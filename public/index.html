@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Bolaxd gogoblesan - 3</title>
+		<link rel="stylesheet" href="output.css" type="text/css" />
+	</head>
+	<body>
+		<div class="container background relative">
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			 <span></span>
+			<div class="bg-[rgba(4,11,86,0.8)] border-separate border border-slate-500 rounded-xl w-[90%] min-h-[85%] absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] justify-center">
+				<h1 class="text-center text-stone-400 font-bold uppercase text-2xl my-9">Gogoblesan part-3</h1>
+				<div class="flex justify-center items-center gap-4 relative mt-5">
+					<div class="flex items-center justify-center rounded-full p-[9.6px] shadow-[inset_2px_7px_10px_rgb(5,5,5)] bg-indigo-950 w-64">
+						<input type="text" id="hobby" placeholder="Masukan hobby kalian" value="" class="border-none bg-transparent w-screen text-[#d3d3d3] outline-none" />
+					</div>
+					<button class="text-stone-400 rounded-full px-[15.6px] py-[9.6px] shadow-[inset_2px_7px_10px_rgb(5,5,5)] bg-indigo-800" onclick="pushHobby()">Save</button>
+				</div>
+				<p class="text-red-500 mx-7 my-2 absolute" id="textAlert"></p>
+				<div class="flex gap-3 justify-center items-center my-14">
+					<input class="text-stone-400 rounded-full w-14 px-[15.6px] py-[9.6px] shadow-[inset_2px_7px_10px_rgb(5,5,5)] bg-indigo-950 outline-none" type="number" id="val1" value="" />
+					<p class="text-white" >=></p>
+					<input class="text-stone-400 rounded-full w-14 px-[15.6px] py-[9.6px] shadow-[inset_2px_7px_10px_rgb(5,5,5)] bg-indigo-950 outline-none" type="number" id="val2" value="" />
+					<button class="text-stone-400 rounded-full ml-14 px-[15.6px] py-[9.6px] shadow-[inset_2px_7px_10px_rgb(5,5,5)] bg-indigo-800" onclick="switchHobby()" >Switch</button>
+					<p class="text-red-500 mx-2 absolute mt-20" id="alertSwitch"></p>
+				</div>
+				<div class="text-white bg-blue-950 w-[90%] h-60 mx-auto rounded-xl">
+					<h1 class="bg-[rgba(225,225,225,0.2)] text-blue-950 py-2 px-5 font-bold uppercase italic rounded-xl">&nbsp;&nbsp;Hobby Kalian:</h1>
+					<ul id="showHobby" class="w-[99%] h-[12.5rem] text-center justify-center overflow-auto"></ul>
+				</div>
+			</div>
+		</div>
+		<script>
+			let inputHobby = document.getElementById('hobby')
+			let val1 = document.getElementById('val1')
+			let val2 = document.getElementById('val2')
+			let textAlert = document.getElementById('textAlert')
+			let alertSwitch = document.getElementById('alertSwitch')
+			let showHobby = document.getElementById('showHobby')
+			
+			let Arr = []
+			const pushHobby = () => {
+				let hobby = inputHobby.value.toLowerCase()
+				if (hobby.length < 1) {
+					setTimeout(()=> { textAlert.innerHTML = ''}, 2000)
+					return textAlert.innerHTML = `Input masih kosong! Cobalah isi dulu`
+				}
+				if (hobby.length > 15) {
+					setTimeout(()=> { textAlert.innerHTML = ''}, 2000)
+					return textAlert.innerHTML = `Hobby apaan tuh? ${inputHobby.value}, kepanjangan anjir`
+					
+				}
+				if (Arr.includes(hobby)) {
+					setTimeout(()=> { textAlert.innerHTML = ''}, 1500)
+					return textAlert.innerHTML = `Maaf pak! Hobby ${inputHobby.value} Sudah kamu masukan!`
+				}
+				Arr.push(hobby)
+				inputHobby.value = ''
+				showHobby.innerHTML = Arr.map(v => `<li>${v}</li>`).join('').toUpperCase()
+			}
+			
+			const switchHobby = () => {
+				let input1 = parseInt(val1.value) - 1
+				let input2 = parseInt(val2.value) - 1
+				if (Arr.length < 1) {
+					setTimeout(()=> { alertSwitch.innerHTML = ''}, 4000)
+					return alertSwitch.innerHTML = `Hobby mu masih kosong!, isi form diatas untuk mendata nya di bawah, dan lalu ubah lah`
+				}
+				if (input1 < 0) {
+					setTimeout(()=> { alertSwitch.innerHTML = ''}, 4000)
+					return alertSwitch.innerHTML = `tidak valid!, form kesatu masih kosong`
+				} 
+				if (input2 < 0) {
+					setTimeout(()=> { alertSwitch.innerHTML = ''}, 4000)
+					return alertSwitch.innerHTML = `tidak valid!, form kedua masih kosong`
+				} 
+				if (input1 > Arr.length) {
+					setTimeout(()=> { alertSwitch.innerHTML = ''}, 2000)
+					return alertSwitch.innerHTML = `Nilai inputan kesatu terlalu besar!, cobalah untuk kurang dari ${Arr.length}`
+				}
+				if (input2 > Arr.length) {
+					setTimeout(()=> { alertSwitch.innerHTML = ''}, 2000)
+					return alertSwitch.innerHTML = `Nilai inputan kedua terlalu besar!, cobalah untuk kurang dari ${Arr.length}`
+				}
+				Arr.splice(input2, 0, Arr.splice(input1, 1)[0]);
+				val1.value = ''
+				val2.value = ''
+				showHobby.innerHTML = Arr.map(v => `<li>${v}</li>`).join('').toUpperCase()
+				
+			}
+			
+		</script>
+	</body>
+</html>

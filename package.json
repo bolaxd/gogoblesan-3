@@ -1,0 +1,18 @@
+{
+  "name": "gogoblesan3",
+  "version": "1.0.0",
+  "description": "gogoblesan-3",
+  "type": "module",
+  "main": "src/app.js",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./public/mycss.css -o ./public/output.css --watch",
+    "start": "node src/app"
+  },
+  "author": "bolaxd",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "tailwindcss": "^3.3.1"
+  }
+}
